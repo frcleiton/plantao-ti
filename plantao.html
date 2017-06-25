@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Plantão TI - Grupo Cimed</title>
+    <!-- FONT ––––––––––––––––––––––––––––– -->
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <!-- CSS –––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="static/css/normalize.css">
+    <link rel="stylesheet" href="static/css/skeleton.css">
+</head>
+<body>
+    <div class="container" style="top: 40px">
+        <header>
+            <h2>Plantão TI</h2>
+        </header>
+        <form>
+                <label for="nome">Nome</label>
+                <input id="nome" type="text" required>
+                <label for="sms">Telefone/SMS</label>
+                <input id="sms" type="text" required>
+                <label for="email">Email</label>
+                <input id="email" type="email">
+                <input type="button" value="Criar" id="criar" class="button-primary">
+        </form>
+        <section id="plantaolista">
+            <table class="u-full-width">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Telefone/SMS</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody id="itenslista">
+                <tbody>
+        </section>
+    </div>
+    <script src="static/js/plantao.js"></script>
+</body>
+</html>
