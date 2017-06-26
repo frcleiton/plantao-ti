@@ -165,6 +165,12 @@ a:hover {
 
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+.delete {
+background: url('../images/delete.gif');
+background-position:center;
+background-repeat:no-repeat;
+}
+
 .button,
 button,
 input[type="submit"],

@@ -18,7 +18,6 @@ function adicionar(form) {
         email: form.email.value
     }
     lista.push(plantonista);
-    console.log(lista);
     var jsonText = JSON.stringify(lista);
     localStorage.setItem('lista-plantao', jsonText);
     addContactToHTML(plantonista);
@@ -43,6 +42,12 @@ function addContactToHTML(contato) {
     tdnome  = document.createElement('td');
     tdsms   = document.createElement('td');
     tdemail = document.createElement('td');
+    btnExcluir = document.createElement('button');
+    btnExcluir.className = 'delete'; 
+    btnExcluir.className = 'delete'; 
+    btnExcluir.addEventListener('click', function() {
+			removeContact(this);
+	});
 
     tdnome.innerHTML    = contato.nome;
     tdsms.innerHTML     = contato.sms;
@@ -51,7 +56,26 @@ function addContactToHTML(contato) {
     tr.appendChild(tdnome);
     tr.appendChild(tdsms);
     tr.appendChild(tdemail);
+    tr.appendChild(btnExcluir);
     tbody.appendChild(tr);
 }
+
+function removeContact(item) {
+    email = item.previousSibling.innerHTML;
+    if (confirm("Gostaria de remover? "+email)) {
+        for (var i=0; i<lista.length; i++){
+            if (email == lista[i].email) {
+                lista.splice(i,1);
+            }
+        }
+        //Regrava a lista no Storage
+        var jsonText = JSON.stringify(lista);
+        localStorage.setItem('lista-plantao', jsonText);
+        //Remove da pagina
+        ltbody = item.parentNode.parentNode;
+        ltbody.removeChild(item.parentNode);
+    }
+}
+
 
 
