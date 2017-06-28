@@ -9,13 +9,18 @@ function start() {
     buttonCriar.onclick = function() {
         adicionar(form);
     };
+    var buttonRelatorio = document.getElementById('relatorio');
+    buttonRelatorio.onclick = function() {
+        relatorio();
+    };
 }
 
 function adicionar(form) {
     var plantonista = {
         nome: form.nome.value,
-        sms: form.sms.value,
-        email: form.email.value
+        setor: form.setor.value,
+        email: form.email.value,
+        sms: form.sms.value
     }
     lista.push(plantonista);
     var jsonText = JSON.stringify(lista);
@@ -40,22 +45,24 @@ function addContactToHTML(contato) {
     tbody = document.getElementById('itenslista');
     tr = document.createElement('tr');
     tdnome  = document.createElement('td');
-    tdsms   = document.createElement('td');
+    tdsetor = document.createElement('td');
     tdemail = document.createElement('td');
+    tdsms   = document.createElement('td');
     btnExcluir = document.createElement('button');
-    btnExcluir.className = 'delete'; 
     btnExcluir.className = 'delete'; 
     btnExcluir.addEventListener('click', function() {
 			removeContact(this);
 	});
 
     tdnome.innerHTML    = contato.nome;
-    tdsms.innerHTML     = contato.sms;
+    tdsetor.innerHTML   = contato.setor;
     tdemail.innerHTML   = contato.email;
+    tdsms.innerHTML     = contato.sms;
 
     tr.appendChild(tdnome);
-    tr.appendChild(tdsms);
+    tr.appendChild(tdsetor);
     tr.appendChild(tdemail);
+    tr.appendChild(tdsms);
     tr.appendChild(btnExcluir);
     tbody.appendChild(tr);
 }
@@ -75,6 +82,52 @@ function removeContact(item) {
         ltbody = item.parentNode.parentNode;
         ltbody.removeChild(item.parentNode);
     }
+}
+
+function relatorio() {
+
+      var servidores = 0;
+      var sistemas = 0;
+      var helpdesk = 0;
+      var telecom = 0;
+      var outros = 0;
+
+      for (var plant in lista) {
+          if (lista[plant].setor == "Servidores") {
+              servidores += 1;
+          } else if (lista[plant].setor == "Sistemas"){
+              sistemas += 1;
+          } else if (lista[plant].setor == "Help Desk"){
+              helpdesk += 1;
+          } else if (lista[plant].setor == "Telecom") {
+              telecom += 1;
+          } else {
+              outros += 1;
+          }
+      }  
+    
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Setor', 'Plantonistas'],
+          ['Servidores', servidores],
+          ['Sistemas', sistemas],
+          ['Help Desk', helpdesk],
+          ['Telecom', telecom],
+          ['Outros', outros]
+        ]);
+
+        var options = {
+          title: 'Escala para plantão'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('grafico'));
+
+        chart.draw(data, options);
+      }
 }
 
 
