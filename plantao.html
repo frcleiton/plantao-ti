@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Plantão TI - Grupo Cimed</title>
+    <!-- FONT ––––––––––––––––––––––––––––– -->
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <!-- CSS –––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="static/css/normalize.css">
+    <link rel="stylesheet" href="static/css/skeleton.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+    <div class="container" style="top: 40px">
+        <header>
+            <div class="row">
+                <div class="twelve columns">
+                    <h2>Plantão TI</h2>
+                    <input type="button" value="Relatorio" id="relatorio">
+                    <div id="grafico"></div>                
+                </div>
+            </div>
+        </header>
+        <form>
+            <div class="row">
+                <div class="six columns">
+                    <label for="nome">Nome</label>
+                    <input class="u-full-width" id="nome" type="text" required>
+                </div>
+                <div class="six columns">
+                    <label for="setor">Setor</label>
+                    <input class="u-full-width" id="setor" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="six columns">
+                    <label for="email">Email</label>
+                    <input class="u-full-width" id="email" type="email">
+                </div>
+                <div class="six columns">
+                    <label for="sms">Telefone/SMS</label>
+                    <input id="sms" type="text">                    
+                    <input type="submit" value="Criar" id="criar" class="button-primary">
+                </div>
+            </div>
+        </form>
+        <section id="plantaolista">
+            <table class="u-full-width">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Setor</th>
+                        <th>Email</th>
+                        <th>Telefone/SMS</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="itenslista">
+                <tbody>
+        </section>
+    </div>
+
+    <script src="static/js/plantao.js"></script>
+</body>
+</html>
